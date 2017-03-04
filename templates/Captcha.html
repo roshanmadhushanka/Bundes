@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        {% if [session_id] %}
+        <form style="display:inline" method="post" action="https://www.bundesanzeiger.de/ebanzwww/wexsservlet" accept-charset="utf-8"><input type="hidden" name="session.sessionid" value="{{ }}"><div class="content">
+           <div class="forcemargin">&nbsp;</div>
+           <h2>Suchen</h2><input type="image" src="x.gif" class="hidden_submit" name="(page.navid=detailsearchdetailtodetailsearchdetailsolvecaptcha)"><div class="top_search clearfix">
+              <div class="form_elem clearfix">
+                 <div class="form_label"><label for="genericsearch_param.fulltext">Suchbegriff:</label></div>
+                 <div class="form_inputs">
+                    <div class="form_input"><input name="genericsearch_param.fulltext" value="innoscripta" id="genericsearch_param.fulltext" class="text" type="text"></div>
+                 </div>
+              </div>
+              <div class="form_elem clearfix">
+                 <div class="form_label"><label for="genericsearch_param.part_id">Welchen Bereich möchten Sie durchsuchen?</label></div>
+                 <div class="form_inputs">
+                    <div class="form_input"><select name="genericsearch_param.part_id" id="genericsearch_param.part_id" class="select">
+                          <option value="">Alle Bereiche</option>
+                          <option value="1">Amtlicher Teil</option>
+                          <option value="5">Gerichtlicher Teil</option>
+                          <option value="6">Gesellschaftsbekanntmachungen</option>
+                          <option value="7">Kapitalmarkt</option>
+                          <option value="2">Nichtamtlicher Teil</option>
+                          <option value="22">Rechnungslegung/Finanzberichte</option>
+                          <option value="8">Verschiedene Bekanntmachungen</option></select></div>
+                 </div>
+              </div>
+              <p class="submit_button"><input type="submit" name="(page.navid=detailsearchdetailtodetailsearchnew)" value="Neue Suche starten"></p>
+              <p class="ext_search_link"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=to_detailsearch" class="intern" title="Erweiterte Suche"><span class="bullet">»</span>&nbsp;Erweiterte Suche</a></p>
+           </div>
+           <div>
+              <p class="fulltextsearch_info"></p><div>Eine Volltextrecherche über den Veröffentlichungsinhalt ist bei Jahresabschlüssen,
+                 Veröffentlichungen nach §§&nbsp;264&nbsp;Abs.&nbsp;3, 264b&nbsp;HGB und Zahlungsberichten
+                 nicht möglich.</div>
+              <p></p>
+              <p class="fulltextsearch_info">Hinterlegte Jahresabschlüsse (Bilanzen) stehen im Unternehmensregister zur Beauskunftung
+                 zur Verfügung.
+              </p>
+           </div>
+           <div class="bordered">
+              <div class="publication_navigation">
+                 <ul>
+                    <li class="first"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchdetailtodetailsearchdetail&amp;fts_search_list.selected=2663e459e2558820&amp;genericsearch_param.currentpage=1&amp;fts_search_list.destHistoryId=97540" title="« Vorheriger Eintrag">« Vorheriger Eintrag</a></li>
+                    <li><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchdetailtodetailsearchlist&amp;fts_search_list.destHistoryId=97540" class="intern" title="Zurück zur Ergebnisseite"><span class="bullet">»</span>&nbsp;Zurück zur Ergebnisseite</a></li>
+                    <li class="last">Nächster Eintrag »</li>
+                 </ul>
+              </div>
+           </div>
+           <div class="publication_info">
+              <table summary="Informationen zur Publikation" cellspacing="0" border="0">
+                 <tbody><tr>
+                    <th class="first">Name</th>
+                    <th class="part">Bereich</th>
+                    <th class="info">Information</th>
+                    <th class="date">V.-Datum</th>
+                    <th class="relevance">Relevanz</th>
+                 </tr>
+                 <tr>
+                    <td class="first">innoscripta GmbH<br>München
+                    </td>
+                    <td class="part">Rechnungslegung/Finanzberichte</td>
+                    <td class="info">Jahresabschluss zum Geschäftsjahr vom 01.01.2014 bis zum 31.12.2014</td>
+                    <td class="date">14.07.2015</td>
+                    <td class="relevance">
+                       <div style="width: 5em;">
+                          <div class="relevance_graphic">
+                             <div class="inner" style="width: 50px;">
+                                &nbsp;
+
+                             </div>
+                          </div><span class="relevance_value">100%</span></div>
+                    </td>
+                 </tr>
+              </tbody></table>
+           </div>
+           <div class="forcemargin">&nbsp;</div>
+        </div>
+        <div id="preview_data" class="publicationcontent">
+           <div class="forcemargin">&nbsp;</div>
+           <div class="captcha">
+              <div class="messages">
+                 <div class="message">
+                    <h3>Sicherheitsabfrage</h3>
+                    <p>Um die gewählte Veröffentlichung anzusehen, lösen Sie bitte die folgende Sicherheitsabfrage:</p>
+                    <div class="captcha_blocks clearfix">
+                       <div class="captcha_block first_captcha_block">
+                          <h4><span>1. </span>
+                             Zeichen lesen
+                          </h4>
+                          <div class="image_captcha"><img src="./Bundesanzeiger_files/contentloader" alt="Captcha"></div>
+                          <div class="captcha_block_links">
+                             <p><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchdetailtodetailsearchdetail&amp;=" class="intern" title="Zeichen ändern"><span class="bullet">»</span>&nbsp;Zeichen ändern</a></p>
+                          </div>
+                       </div>
+                       <div class="captcha_block middle_captcha_block">
+                          <h4><span>2. </span><label for="captcha_data.solution">Zeichen eingeben</label></h4><input type="text" class="text" maxlength="6" id="captcha_data.solution" name="captcha_data.solution" value=""></div>
+                       <div class="captcha_block last_captcha_block">
+                          <h4><span>3. </span>
+                             Abschicken
+                          </h4>
+                          <div class="content">
+                             <div class="button_out button_out_right">
+                                <div class="button right_button">
+                                   <div class="bbg"><input type="submit" value="OK" alt="OK" name="(page.navid=detailsearchdetailtodetailsearchdetailsolvecaptcha)"></div>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="captcha_block_links">
+                             <p><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchdetailtodetailsearchdetailcaptchahelp&amp;fts_search_list.destHistoryId=97540" class="intern" title="Hilfe"><span class="bullet">»</span>&nbsp;Hilfe</a></p>
+                          </div>
+                       </div>
+                    </div>
+                    <p>Alternativ können Sie sich auch eine Zeichenfolge <a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchdetailtodetailsearchdetail&amp;captcha_data.mode=mixed-image&amp;=" class="intern" title="vorlesen lassen">vorlesen lassen</a>
+                    </p>
+                 </div>
+              </div>
+           </div>
+           <div class="forcemargin">&nbsp;</div>
+        </div>
+        <div class="content">
+           <div class="forcemargin">&nbsp;</div>
+           <div class="bordered">
+              <div class="publication_navigation">
+                 <ul>
+                    <li class="first"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchdetailtodetailsearchdetail&amp;fts_search_list.selected=2663e459e2558820&amp;genericsearch_param.currentpage=1&amp;fts_search_list.destHistoryId=97540" title="« Vorheriger Eintrag">« Vorheriger Eintrag</a></li>
+                    <li><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchdetailtodetailsearchlist&amp;fts_search_list.destHistoryId=97540" class="intern" title="Zurück zur Ergebnisseite"><span class="bullet">»</span>&nbsp;Zurück zur Ergebnisseite</a></li>
+                    <li class="last">Nächster Eintrag »</li>
+                 </ul>
+              </div>
+           </div>
+           <div class="forcemargin">&nbsp;</div>
+        </div>
+     </form>
+    </div>
+</body>
+</html>

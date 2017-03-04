@@ -1,0 +1,572 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/transitional.dtd">
+<!-- saved from url=(0050)https://www.bundesanzeiger.de/ebanzwww/wexsservlet -->
+<html id="page_top" style="background-color: #fff;" class="gr__bundesanzeiger_de"><!--(#SESSION=9abd557bdb9176a156ddfc005ea44b18&PAGE=detailsearch_list&NID=detailsearch_list&XSL=globalsearch/resultlist&LANGUAGE=de&#)--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      
+      <meta name="format-detection" content="telephone=no">
+      <link rel="shortcut icon" href="https://www.bundesanzeiger.de/images/favicons/banz.ico">
+      <link rel="stylesheet" type="text/css" href="./Bundesanzeiger_files/main.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="./Bundesanzeiger_files/de.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="./Bundesanzeiger_files/eb_main.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="./Bundesanzeiger_files/browser_chrome.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="./Bundesanzeiger_files/print.css" media="print"><script type="text/javascript" async="" defer="" src="./Bundesanzeiger_files/piwik.js.download"></script><script type="text/javascript" language="javascript">
+          var htdocs = '/ebanzwww/..';
+          var css = '/ebanzwww/../css';
+          var images = '/ebanzwww/../images';
+          var path = '/ebanzwww/wexsservlet';
+          var wexsservlet_url = 'https://publikations-plattform.de/sp/wexsservlet';
+          var contentloader_url = '/ebanzwww/contentloader';
+          var session = 'session.sessionid=9abd557bdb9176a156ddfc005ea44b18';
+          var search_field_placeholder = 'ISIN, WKN, Fondsname, Gesellschaft';
+          var show_concern_txt = 'Konzernunterlagen anzeigen';
+    var hide_concern_txt = 'Konzernunterlagen verbergen';
+    var show_subsidiary_txt = 'Befreite Unternehmen anzeigen';
+    var hide_subsidiary_txt = 'Befreite Unternehmen verbergen';
+    </script><script type="text/javascript" src="./Bundesanzeiger_files/jquery.js.download"></script><script type="text/javascript" src="./Bundesanzeiger_files/main.js.download"></script><script type="text/javascript" language="javascript">
+$( document ).ready( function() 
+{ // function will be executed when document is ready
+  $( 'tr.concern_list' ).each( function()
+  {
+    var this_row = $( this );
+    this_row.check_concern_list_hide();
+  } );
+  
+  $( 'table tr a.show_concern' ).live( 'click', function( e )
+  {
+    e.preventDefault();
+    var this_row = $( this ).closest( 'tr' );
+
+    this_row.find( 'a.show_concern' ).remove();
+    this_row.find( 'td.info' ).append( '<a href="#" class="hide_concern intern">' +hide_concern_txt+ '</a>' );
+
+    this_row.next( 'tr' ).unfilter_next();
+  } );
+  
+  $( 'table tr a.hide_concern' ).live( 'click', function( e )
+  {
+    e.preventDefault();
+    var this_row = $( this ).closest( 'tr' );
+    
+    this_row.find( 'a.hide_concern' ).remove();
+
+    this_row.next( 'tr' ).check_concern_list_hide();
+  } );
+  
+  $( 'tr.subsidiary_list' ).each( function()
+  {
+    var this_row = $( this );
+    this_row.check_subsidiary_list_hide();
+  } );
+  
+  $( 'table tr a.show_subsidiary' ).live( 'click', function( e )
+  {
+    e.preventDefault();
+    var this_row = $( this ).closest( 'tr' );
+
+    this_row.find( 'a.show_subsidiary' ).remove();
+    this_row.find( 'td.info' ).append( '<a href="#" class="hide_subsidiary intern">' +hide_subsidiary_txt+ '</a>' );
+
+    this_row.next( 'tr' ).unfilter_next();
+  } );
+  
+  $( 'table tr a.hide_subsidiary' ).live( 'click', function( e )
+  {
+    e.preventDefault();
+    var this_row = $( this ).closest( 'tr' );
+    
+    this_row.find( 'a.hide_subsidiary' ).remove();
+
+    this_row.next( 'tr' ).check_subsidiary_list_hide();
+  } );
+} );
+
+$.fn.check_concern_list_hide = function()
+{
+  var this_row = $( this );
+
+  if ( this_row.prev( 'tr' ).hasClass( 'concern_list' ) )
+  {
+    // do nothing
+  }
+  else
+  {
+    this_row.prev( 'tr' ).find( 'td.info' ).append( '<a href="#" class="show_concern intern">' +show_concern_txt+ '</a>' );
+  }
+  
+  if ( this_row.next( 'tr' ).hasClass( 'concern_list' ) )
+    this_row.hide().next( 'tr' ).check_concern_list_hide();
+  else if ( this_row.hasClass( 'concern_list' ) )
+    this_row.hide();
+
+}
+
+$.fn.check_subsidiary_list_hide = function()
+{
+  var this_row = $( this );
+
+  if ( this_row.prev( 'tr' ).hasClass( 'subsidiary_list' ) )
+  {
+    // do nothing
+  }
+  else
+  {
+    this_row.prev( 'tr' ).find( 'td.info' ).append( '<a href="#" class="show_subsidiary intern">' +show_subsidiary_txt+ '</a>' );
+  }
+  
+  if ( this_row.next( 'tr' ).hasClass( 'subsidiary_list' ) )
+    this_row.hide().next( 'tr' ).check_subsidiary_list_hide();
+  else if ( this_row.hasClass( 'subsidiary_list' ) )
+    this_row.hide();
+
+}
+
+$.fn.unfilter_next = function()
+{
+    var this_row = $( this );
+
+    if ( this_row.is( ':hidden' ) && this_row.hasClass( 'concern_list' ) )
+    {
+        this_row.show();
+        this_row.next( 'tr' ).unfilter_next();
+    }
+    else if ( this_row.is( ':hidden' ) && this_row.hasClass( 'subsidiary_list' ) )
+    {
+        this_row.show();
+        this_row.next( 'tr' ).unfilter_next();
+    }
+}
+      </script><title>Bundesanzeiger</title>
+   </head>
+   <body class="eb" data-gr-c-s-loaded="true">
+      <div id="container">
+         <h1 class="head" id="first_headline">Schnellsuche </h1>
+         <table class="layout" cellspacing="0" cellpadding="0" summary="">
+            <tbody><tr class="helper">
+               <td><img class="left" src="./Bundesanzeiger_files/x.gif" alt=""></td>
+               <td><img class="middle" src="./Bundesanzeiger_files/x.gif" alt=""></td>
+               <td><img class="right" src="./Bundesanzeiger_files/x.gif" alt=""></td>
+            </tr>
+            <tr class="tr_layout">
+               <td colspan="3" class="layouttable">
+                  <div id="header">
+                     <div class="top">
+                        <ul class="meta_nav">
+                           <li class="inactive first"><span class="bullet">|</span><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?page.navid=to_contact&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;global_data.designmode=eb" title="Kontakt">Kontakt</a></li>
+                           <li class="inactive"><span class="bullet">|</span><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?page.navid=to_sitemap&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;global_data.designmode=eb" title="Übersicht">Übersicht</a></li>
+                           <li class="inactive"><span class="bullet">|</span><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?page.navid=to_faqs&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;global_data.designmode=eb" title="Fragen &amp;amp; Antworten">Fragen &amp; Antworten</a></li>
+                           <li class="inactive"><span class="bullet">|</span><a href="https://www.bundesanzeiger.de/redirect/start?dest=service&amp;page.navid=to_registration&amp;global_data.designmode=eb&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18" title="Newsletter">Newsletter</a></li>
+                           <li class="inactive last"><span class="bullet">|</span><a href="https://www.bundesanzeiger.de/redirect/start?dest=wexsservlet&amp;page.navid=to_mobile_apps&amp;global_data.designmode=eb&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18" title="Mobil">Mobil</a></li>
+                           <li class="inactive last" id="flags">
+                              <ul>
+                                 <li class="active first"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?global_data.language=de&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=gotolastpage" title="Deutsche Sprache wählen" class="de"><span class="text">Deutsche Sprache wählen</span></a></li>
+                                 <li class="inactive"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?global_data.language=en&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=gotolastpage" title="Englische Sprache wählen" class="en"><span class="text">Englische Sprache wählen</span></a></li>
+                              </ul>
+                           </li>
+                        </ul>
+                        <ul class="plattform_nav">
+                           <li class="first"><a href="https://www.bundesanzeiger.de/redirect/start?dest=wexsservlet&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=to_start&amp;global_data.designmode=pp" title="Zur Publikations-Plattform wechseln">Publikations-Plattform</a></li>
+                           <li class="last"><a href="https://www.bundesanzeiger.de/redirect/start/ureg/index.html?dest=ureg&amp;language=de" title="Zum Unternehmensregister wechseln">Unternehmensregister</a></li>
+                        </ul>
+                     </div>
+                     <div class="middle">
+                        <div class="plattform_logo"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=to_start&amp;global_data.designmode=eb"><img src="./Bundesanzeiger_files/x.gif" alt=""></a></div>
+                        <div class="banz_logo"><a href="https://www.bundesanzeiger.de/redirects/banz.html" target="_blank" class="extern"><img src="./Bundesanzeiger_files/x.gif" alt=""></a></div>
+                     </div>
+                     <div class="bottom">
+                        <div class="bottom_inner">
+                           <ul class="main_menu">
+                              <li class="startpage inactive"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=to_start" class="startpage" title="Startseite"><span class="bullet">»</span>&nbsp;Startseite</a></li>
+                              <li class="search inactive"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=to_search_start&amp;global_data.designmode=eb" class="search" title="Suchen"><span class="bullet">»</span>&nbsp;Suchen</a></li>
+                              <li class="knowledgeable inactive"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=to_knowledgeable_start&amp;global_data.designmode=eb" class="knowledgeable" title="Wissenswertes"><span class="bullet">»</span>&nbsp;Wissenswertes</a></li>
+                              <li class="info_service inactive"><a href="https://www.bundesanzeiger.de/redirect/start?dest=wexsservlet&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=to_push_service_start&amp;global_data.designmode=eb" class="info_service" title="Info-Dienst"><span class="bullet">»</span>&nbsp;Info-Dienst</a></li>
+                           </ul>
+                           <div class="login_area">
+                              <div class="login_details">
+                                 <div>
+                                    <p class="label">&nbsp;</p>
+                                    <p class="value">&nbsp;</p>
+                                 </div>
+                                 <ul class="login_nav">
+                                    <li class="inactive login first"><a href="https://www.bundesanzeiger.de/redirect/start?dest=wexsservlet&amp;page.navid=to_login_page&amp;global_data.designmode=eb&amp;global_data.language=de" class="login" title="Anmelden"><span class="bullet">»</span>&nbsp;Anmelden</a></li>
+                                    <li class="inactive register last"><a href="https://www.bundesanzeiger.de/redirect/start?dest=account&amp;page.navid=to_reg_info&amp;global_data.designmode=eb&amp;global_data.language=de" class="register" title="Registrieren"><span class="bullet">»</span>&nbsp;Registrieren</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </td>
+            </tr>
+            <tr class="tr_layout tr_breadcrumb">
+               <td colspan="3" class="layouttable">
+                  <div id="breadcrumb">
+                     <ul>
+                        <li class="first"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=to_start"><span class="bullet">»</span>Startseite</a></li>
+                        <li class="last"><span class="bullet">›</span>Schnellsuche
+                        </li>
+                     </ul>
+                  </div>
+               </td>
+            </tr>
+            <tr id="tr_content">
+               <td id="td_content" class="no_pad" colspan="3">
+                  <div class="frame_text">
+                     <form style="display:inline" method="post" action="https://www.bundesanzeiger.de/ebanzwww/wexsservlet" accept-charset="utf-8"><input type="hidden" name="session.sessionid" value="9abd557bdb9176a156ddfc005ea44b18"><div class="content">
+                           <div class="forcemargin">&nbsp;</div>
+                           <div class="no_header"></div>
+                           <h2>Suchen</h2>
+                           <div class="top_search clearfix">
+                              <div class="form_elem clearfix">
+                                 <div class="form_label"><label for="genericsearch_param.fulltext">Suchbegriff:</label></div>
+                                 <div class="form_inputs">
+                                    <div class="form_input"><input name="genericsearch_param.fulltext" value="innoscripta" id="genericsearch_param.fulltext" class="text" type="text"></div>
+                                 </div>
+                              </div>
+                              <div class="form_elem clearfix">
+                                 <div class="form_label"><label for="genericsearch_param.part_id">Welchen Bereich möchten Sie durchsuchen?</label></div>
+                                 <div class="form_inputs">
+                                    <div class="form_input"><select name="genericsearch_param.part_id" id="genericsearch_param.part_id" class="select">
+                                          <option value="">Alle Bereiche</option>
+                                          <option value="1">Amtlicher Teil</option>
+                                          <option value="5">Gerichtlicher Teil</option>
+                                          <option value="6">Gesellschaftsbekanntmachungen</option>
+                                          <option value="7">Kapitalmarkt</option>
+                                          <option value="2">Nichtamtlicher Teil</option>
+                                          <option value="22">Rechnungslegung/Finanzberichte</option>
+                                          <option value="8">Verschiedene Bekanntmachungen</option></select></div>
+                                 </div>
+                              </div>
+                              <p class="submit_button"><input type="submit" name="(page.navid=quicksearchdetailtoquicksearchnew)" value="Neue Suche starten"></p>
+                              <p class="ext_search_link"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=to_detailsearch" class="intern" title="Erweiterte Suche"><span class="bullet">»</span>&nbsp;Erweiterte Suche</a></p>
+                           </div>
+                           <div>
+                              <p class="fulltextsearch_info"></p><div>Eine Volltextrecherche über den Veröffentlichungsinhalt ist bei Jahresabschlüssen,
+                                 Veröffentlichungen nach §§&nbsp;264&nbsp;Abs.&nbsp;3, 264b&nbsp;HGB und Zahlungsberichten
+                                 nicht möglich.</div>
+                              <p></p>
+                              <p class="fulltextsearch_info">Hinterlegte Jahresabschlüsse (Bilanzen) stehen im Unternehmensregister zur Beauskunftung
+                                 zur Verfügung.
+                              </p>
+                           </div>
+                           <div class="generic_search_table_top bordered">
+                              <ul class="clearfix">
+                                 <li class="first entry_count"><b>2</b> Treffer, angezeigt auf <b>1</b> Seiten
+                                 </li>
+                                 <li class="hits_per_page clearfix">
+                                    <div class="form_elem clearfix">
+                                       <div class="form_label"><label for="genericsearch_param.hitsperpage">Ergebnisse pro Seite:</label></div>
+                                       <div class="form_inputs">
+                                          <div class="form_input"><select name="genericsearch_param.hitsperpage" id="genericsearch_param.hitsperpage" class="select">
+                                                <option value="10">10</option>
+                                                <option value="20" selected="">20</option>
+                                                <option value="30">30</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option></select></div>
+                                       </div>
+                                    </div><input type="submit" name="(page.navid=detailsearchlisttodetailsearchlistupdateresetpage)" value="OK"></li>
+                                 <li class="last"></li>
+                              </ul>
+                           </div>
+                           <div class="forcemargin">&nbsp;</div>
+                        </div>
+                     </form>
+                  </div>
+               </td>
+            </tr>
+            <tr id="tr_content">
+               <td id="td_content_left" class="no_pad generic_resultlist">
+                  <div class="frame_text">
+                     <form style="display:inline" method="post" action="https://www.bundesanzeiger.de/ebanzwww/wexsservlet" accept-charset="utf-8"><input type="hidden" name="session.sessionid" value="9abd557bdb9176a156ddfc005ea44b18"><div class="content">
+                           <div class="forcemargin">&nbsp;</div>
+                           <div class="generic_resultlist_left">
+                              <div class="block">
+                                 <h3>Gefunden in:</h3>
+                                 <ul class="statistic">
+                                    <li class="first"><span class="name"><b>Alle Bereiche</b></span><span class="count">&nbsp;(2)</span><ul class="statistic">
+                                          <li class="first"><span class="name"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchlisttodetailsearchliststatisticfilter&amp;genericsearch_param.destHistoryId=97540&amp;genericsearch_param.currentpage=1&amp;search_statistic_menu.selected_part_id=22&amp;search_statistic_menu.selected_category_id=&amp;search_statistic_menu.selected_type_id=" class="annualpubs intern"><span class="bullet">»</span>Rechnungslegung/<br>Finanzberichte</a></span><span class="count">&nbsp;(2)</span></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </div>
+                              <div class="block">
+                                 <h3>Weiter eingrenzen:</h3>
+                                 <p>In <b>Alle Bereiche</b> stehen Ihnen folgende Suchmöglichkeiten zur Verfügung
+                                 </p>
+                                 <div class="date_search">
+                                    <h4>Veröffentlichungsdatum</h4>
+                                    <p class="label">von:</p><label class="hide" for="genericsearch_param.start_date:0">'von'-Tag:</label><select id="genericsearch_param.start_date:0" name="genericsearch_param.start_date:0" class="day">
+                                       <option value="0">Tag</option>
+                                       <option value="1">1</option>
+                                       <option value="2">2</option>
+                                       <option value="3">3</option>
+                                       <option value="4">4</option>
+                                       <option value="5">5</option>
+                                       <option value="6">6</option>
+                                       <option value="7">7</option>
+                                       <option value="8">8</option>
+                                       <option value="9">9</option>
+                                       <option value="10">10</option>
+                                       <option value="11">11</option>
+                                       <option value="12">12</option>
+                                       <option value="13">13</option>
+                                       <option value="14">14</option>
+                                       <option value="15">15</option>
+                                       <option value="16">16</option>
+                                       <option value="17">17</option>
+                                       <option value="18">18</option>
+                                       <option value="19">19</option>
+                                       <option value="20">20</option>
+                                       <option value="21">21</option>
+                                       <option value="22">22</option>
+                                       <option value="23">23</option>
+                                       <option value="24">24</option>
+                                       <option value="25">25</option>
+                                       <option value="26">26</option>
+                                       <option value="27">27</option>
+                                       <option value="28">28</option>
+                                       <option value="29">29</option>
+                                       <option value="30">30</option>
+                                       <option value="31">31</option></select><label class="hide" for="genericsearch_param.start_date:1">'von'-Monat:</label><select id="genericsearch_param.start_date:1" name="genericsearch_param.start_date:1" class="month">
+                                       <option value="0">Monat</option>
+                                       <option value="1">Januar</option>
+                                       <option value="2">Februar</option>
+                                       <option value="3">März</option>
+                                       <option value="4">April</option>
+                                       <option value="5">Mai</option>
+                                       <option value="6">Juni</option>
+                                       <option value="7">Juli</option>
+                                       <option value="8">August</option>
+                                       <option value="9">September</option>
+                                       <option value="10">Oktober</option>
+                                       <option value="11">November</option>
+                                       <option value="12">Dezember</option></select><label class="hide" for="genericsearch_param.start_date:2">'von'-Jahr:</label><select id="genericsearch_param.start_date:2" name="genericsearch_param.start_date:2" class="year">
+                                       <option value="0">Jahr</option>
+                                       <option value="2002">2002</option>
+                                       <option value="2003">2003</option>
+                                       <option value="2004">2004</option>
+                                       <option value="2005">2005</option>
+                                       <option value="2006">2006</option>
+                                       <option value="2007">2007</option>
+                                       <option value="2008">2008</option>
+                                       <option value="2009">2009</option>
+                                       <option value="2010">2010</option>
+                                       <option value="2011">2011</option>
+                                       <option value="2012">2012</option>
+                                       <option value="2013">2013</option>
+                                       <option value="2014">2014</option>
+                                       <option value="2015">2015</option>
+                                       <option value="2016">2016</option>
+                                       <option value="2017">2017</option></select><br><p class="label">bis:</p><label class="hide" for="genericsearch_param.stop_date:0">'bis'-Tag:</label><select id="genericsearch_param.stop_date:0" name="genericsearch_param.stop_date:0" class="day">
+                                       <option value="0">Tag</option>
+                                       <option value="1">1</option>
+                                       <option value="2">2</option>
+                                       <option value="3">3</option>
+                                       <option value="4">4</option>
+                                       <option value="5">5</option>
+                                       <option value="6">6</option>
+                                       <option value="7">7</option>
+                                       <option value="8">8</option>
+                                       <option value="9">9</option>
+                                       <option value="10">10</option>
+                                       <option value="11">11</option>
+                                       <option value="12">12</option>
+                                       <option value="13">13</option>
+                                       <option value="14">14</option>
+                                       <option value="15">15</option>
+                                       <option value="16">16</option>
+                                       <option value="17">17</option>
+                                       <option value="18">18</option>
+                                       <option value="19">19</option>
+                                       <option value="20">20</option>
+                                       <option value="21">21</option>
+                                       <option value="22">22</option>
+                                       <option value="23">23</option>
+                                       <option value="24">24</option>
+                                       <option value="25">25</option>
+                                       <option value="26">26</option>
+                                       <option value="27">27</option>
+                                       <option value="28">28</option>
+                                       <option value="29">29</option>
+                                       <option value="30">30</option>
+                                       <option value="31">31</option></select><label class="hide" for="genericsearch_param.stop_date:1">'bis'-Monat:</label><select id="genericsearch_param.stop_date:1" name="genericsearch_param.stop_date:1" class="month">
+                                       <option value="0">Monat</option>
+                                       <option value="1">Januar</option>
+                                       <option value="2">Februar</option>
+                                       <option value="3">März</option>
+                                       <option value="4">April</option>
+                                       <option value="5">Mai</option>
+                                       <option value="6">Juni</option>
+                                       <option value="7">Juli</option>
+                                       <option value="8">August</option>
+                                       <option value="9">September</option>
+                                       <option value="10">Oktober</option>
+                                       <option value="11">November</option>
+                                       <option value="12">Dezember</option></select><label class="hide" for="genericsearch_param.stop_date:2">'bis'-Jahr:</label><select id="genericsearch_param.stop_date:2" name="genericsearch_param.stop_date:2" class="year">
+                                       <option value="0">Jahr</option>
+                                       <option value="2002">2002</option>
+                                       <option value="2003">2003</option>
+                                       <option value="2004">2004</option>
+                                       <option value="2005">2005</option>
+                                       <option value="2006">2006</option>
+                                       <option value="2007">2007</option>
+                                       <option value="2008">2008</option>
+                                       <option value="2009">2009</option>
+                                       <option value="2010">2010</option>
+                                       <option value="2011">2011</option>
+                                       <option value="2012">2012</option>
+                                       <option value="2013">2013</option>
+                                       <option value="2014">2014</option>
+                                       <option value="2015">2015</option>
+                                       <option value="2016">2016</option>
+                                       <option value="2017">2017</option></select><br></div>
+                                 <p><input type="submit" name="(page.navid=detailsearchlisttodetailsearchlistupdateresetpage)" value="Dokumente anzeigen"></p>
+                              </div>
+                           </div>
+                           <div class="forcemargin">&nbsp;</div>
+                        </div>
+                     </form>
+                  </div>
+               </td>
+               <td colspan="2" id="td_content_right" class="no_pad generic_resultlist">
+                  <div class="frame_text">
+                     <form style="display:inline" method="post" action="https://www.bundesanzeiger.de/ebanzwww/wexsservlet" accept-charset="utf-8"><input type="hidden" name="session.sessionid" value="9abd557bdb9176a156ddfc005ea44b18"><div class="content">
+                           <div class="forcemargin">&nbsp;</div>
+                           <div class="generic_resultlist_right">
+                              <table summary="Trefferliste" cellspacing="0" class="result">
+                                 <tbody><tr>
+                                    <th class="first" colspan="2">Name
+                                       <ul class="resultlist_arrows">
+                                          <li class="first"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchlisttodetailsearchlistsetorder&amp;genericsearch_param.sort_type=publisher_asc&amp;fts_search_list.destHistoryId=97540" class="arrow_down" title="Aufsteigend sortieren"><img src="./Bundesanzeiger_files/arrow_down_active.gif" alt="Aufsteigend sortieren" border="0"></a></li>
+                                          <li class="last"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchlisttodetailsearchlistsetorder&amp;genericsearch_param.sort_type=publisher_desc&amp;fts_search_list.destHistoryId=97540" class="arrow_up" title="Absteigend sortieren"><img src="./Bundesanzeiger_files/arrow_up_active.gif" alt="Absteigend sortieren" border="0"></a></li>
+                                       </ul>
+                                    </th>
+                                    <th>Bereich</th>
+                                    <th>Information
+                                       <ul class="resultlist_arrows">
+                                          <li class="first"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchlisttodetailsearchlistsetorder&amp;genericsearch_param.sort_type=info_asc&amp;fts_search_list.destHistoryId=97540" class="arrow_down" title="Aufsteigend sortieren"><img src="./Bundesanzeiger_files/arrow_down_active.gif" alt="Aufsteigend sortieren" border="0"></a></li>
+                                          <li class="last"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchlisttodetailsearchlistsetorder&amp;genericsearch_param.sort_type=info_desc&amp;fts_search_list.destHistoryId=97540" class="arrow_up" title="Absteigend sortieren"><img src="./Bundesanzeiger_files/arrow_up_active.gif" alt="Absteigend sortieren" border="0"></a></li>
+                                       </ul>
+                                    </th>
+                                    <th nowrap="">V.-Datum
+                                       <ul class="resultlist_arrows">
+                                          <li class="first"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchlisttodetailsearchlistsetorder&amp;genericsearch_param.sort_type=publication_date_asc&amp;fts_search_list.destHistoryId=97540" class="arrow_down" title="Aufsteigend sortieren"><img src="./Bundesanzeiger_files/arrow_down_active.gif" alt="Aufsteigend sortieren" border="0"></a></li>
+                                          <li class="last"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchlisttodetailsearchlistsetorder&amp;genericsearch_param.sort_type=publication_date_desc&amp;fts_search_list.destHistoryId=97540" class="arrow_up" title="Absteigend sortieren"><img src="./Bundesanzeiger_files/arrow_up_active.gif" alt="Absteigend sortieren" border="0"></a></li>
+                                       </ul>
+                                    </th>
+                                    <th nowrap="">Relevanz</th>
+                                 </tr>
+                                 <tr class="first odd">
+                                    <td class="first">innoscripta GmbH<br>München
+                                    </td>
+                                    <td class="documents_icon">
+                                       
+                                       &nbsp;
+                                       
+                                    </td>
+                                    <td class="part">Rechnungslegung/<br>Finanzberichte</td>
+                                    <td class="info"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchlisttodetailsearchdetail&amp;fts_search_list.selected=2663e459e2558820&amp;fts_search_list.destHistoryId=97540" title="Publikation anzeigen" class="intern"><span class="bullet">»</span>Jahresabschluss zum Geschäftsjahr vom 01.01.2015 bis zum 31.12.2015</a></td>
+                                    <td class="date">09.02.2017</td>
+                                    <td class="relevance">
+                                       <div style="width: 5em;">
+                                          <div class="relevance_graphic">
+                                             <div class="inner" style="width: 50px;">
+                                                &nbsp;
+                                                
+                                             </div>
+                                          </div><span class="relevance_value">100%</span></div>
+                                    </td>
+                                 </tr>
+                                 <tr class="even">
+                                    <td class="first">innoscripta GmbH<br>München
+                                    </td>
+                                    <td class="documents_icon">
+                                       
+                                       &nbsp;
+                                       
+                                    </td>
+                                    <td class="part">Rechnungslegung/<br>Finanzberichte</td>
+                                    <td class="info"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;page.navid=detailsearchlisttodetailsearchdetail&amp;fts_search_list.selected=477e5d55485315ac&amp;fts_search_list.destHistoryId=97540" title="Publikation anzeigen" class="intern"><span class="bullet">»</span>Jahresabschluss zum Geschäftsjahr vom 01.01.2014 bis zum 31.12.2014</a></td>
+                                    <td class="date">14.07.2015</td>
+                                    <td class="relevance">
+                                       <div style="width: 5em;">
+                                          <div class="relevance_graphic">
+                                             <div class="inner" style="width: 50px;">
+                                                &nbsp;
+                                                
+                                             </div>
+                                          </div><span class="relevance_value">100%</span></div>
+                                    </td>
+                                 </tr>
+                              </tbody></table>
+                           </div>
+                           <div class="forcemargin">&nbsp;</div>
+                        </div>
+                     </form>
+                  </div>
+               </td>
+            </tr>
+            <tr id="tr_content">
+               <td id="td_content" class="no_pad" colspan="3">
+                  <div class="frame_text">
+                     <form style="display:inline" method="post" action="https://www.bundesanzeiger.de/ebanzwww/wexsservlet" accept-charset="utf-8"><input type="hidden" name="session.sessionid" value="9abd557bdb9176a156ddfc005ea44b18"><div class="content">
+                           <div class="forcemargin">&nbsp;</div>
+                           <div class="generic_resultlist_bottom">
+                              <div class="generic_search_table_bottom bordered">
+                                 <ul class="clearfix">
+                                    <li class="first entry_count"><b>2</b> Treffer, angezeigt auf <b>1</b> Seiten
+                                    </li>
+                                    <li class="hits_per_page clearfix">
+                                       <div class="form_elem clearfix">
+                                          <div class="form_label"><label for="genericsearch_param.hitsperpage">Ergebnisse pro Seite:</label></div>
+                                          <div class="form_inputs">
+                                             <div class="form_input"><select name="genericsearch_param.hitsperpage" id="genericsearch_param.hitsperpage" class="select">
+                                                   <option value="10">10</option>
+                                                   <option value="20" selected="">20</option>
+                                                   <option value="30">30</option>
+                                                   <option value="50">50</option>
+                                                   <option value="100">100</option></select></div>
+                                          </div>
+                                       </div><input type="submit" name="(page.navid=detailsearchlisttodetailsearchlistupdateresetpage)" value="OK"></li>
+                                    <li class="pagetop_link"><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet#container" title="Nach oben">Nach oben</a></li>
+                                    <li class="last"></li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="forcemargin">&nbsp;</div>
+                        </div>
+                     </form>
+                  </div>
+               </td>
+            </tr>
+            <tr class="tr_layout">
+               <td colspan="3" class="layouttable">
+                  <div id="footer">
+                     <ul>
+                        <li class="inactive first"><span class="bullet">|</span><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?page.navid=to_main_editorial&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;global_data.designmode=eb" title="Impressum">Impressum</a></li>
+                        <li class="inactive"><span class="bullet">|</span><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?page.navid=to_privacy&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;global_data.designmode=eb" title="Haftungsausschluss / Datenschutzerklärung">Haftungsausschluss / Datenschutzerklärung</a></li>
+                        <li class="inactive"><span class="bullet">|</span><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?page.navid=to_agb&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;global_data.designmode=eb" title="Allgemeine Geschäftsbedingungen und Preise">Rechtliches / <abbr title="Allgemeine Geschäftsbedingungen">AGB</abbr></a></li>
+                        <li class="inactive last"><span class="bullet">|</span><a href="https://www.bundesanzeiger.de/ebanzwww/wexsservlet?page.navid=to_main_security_info&amp;session.sessionid=9abd557bdb9176a156ddfc005ea44b18&amp;global_data.designmode=eb" title="Sicherheitshinweise">Sicherheitshinweise</a></li>
+                     </ul>
+                  </div>
+               </td>
+            </tr>
+         </tbody></table>
+      </div>
+      <!--Piwik--><script type="text/javascript">
+          var _paq = _paq || [];
+          _paq.push(['setCustomVariable', 1, "Besucheranmeldung", "nein", "visit"]);_paq.push(['setCustomVariable', 2, "Sprache", "Deutsch", "visit"]);_paq.push(['trackSiteSearch', 'innoscripta', 'Einfache Suche - Alle Bereiche', 2]);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            var u = "//www.bundesanzeiger.de/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', 3]);
+                var d=document, g=d.createElement('script'),
+s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true;
+g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+          </script><noscript>
+         &lt;p&gt;&lt;img src="//www.bundesanzeiger.de/piwik.php?idsite=3" style="border: 0;" alt=""&gt;&lt;/p&gt;
+      </noscript>
+      <!--End Piwik Code-->
+   
+</body></html>
