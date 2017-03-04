@@ -56,16 +56,15 @@ def index():
 
 @app.route('/get_captcha')
 def get_captcha():
-    global process_queue, main_url
+    global process_queue, main_url, driver
     if not isinstance(process_queue, ProcessQueue):
         return
 
     web_url = process_queue.dequeue()
-    if not web_url:
-        session['end'] = 'true'
-        return
 
     captcha_url = crawler.getCaptchaSource(web_url)
+
+    # captcha_url = crawler.getCaptchaSource(web_url)
 
     session['current_url'] = web_url
     session['current_captcha'] = captcha_url
